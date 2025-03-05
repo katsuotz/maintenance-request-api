@@ -5,6 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { MaintenanceRequestsModule } from './module/maintenance-requests/maintenance-requests.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MetricsModule } from './module/metrics/metrics.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       // },
     }),
     MaintenanceRequestsModule,
+    MetricsModule,
   ],
 })
 export class AppModule {}

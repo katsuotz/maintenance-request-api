@@ -22,8 +22,17 @@ export class MaintenanceRequest extends Model {
 
   @Field({ nullable: true })
   @Column({
+    type: DataType.FLOAT,
+    allowNull: true,
+  })
+  declare totalResolvedDays?: number;
+
+  @Field({ nullable: true })
+  @Column({
     type: DataType.DATE,
     allowNull: true,
   })
   declare resolvedAt?: Date;
+
+  averageDays?: number;
 }

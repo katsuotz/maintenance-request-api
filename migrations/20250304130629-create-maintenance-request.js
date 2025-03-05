@@ -18,6 +18,9 @@ module.exports = {
       urgency: {
         type: Sequelize.STRING
       },
+      totalResolvedDays: {
+        type: Sequelize.FLOAT,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
