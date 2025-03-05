@@ -8,7 +8,7 @@ import { MetricsModule } from '../metrics/metrics.module';
 @Module({
   imports: [
     SequelizeModule.forFeature([MaintenanceRequest]),
-    forwardRef(() => MetricsModule), // ✅ Use forwardRef to fix dependency cycle
+    forwardRef(() => MetricsModule),
   ],
   providers: [MaintenanceRequestsResolver, MaintenanceRequestsService],
   exports: [MaintenanceRequestsService],

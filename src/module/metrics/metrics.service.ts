@@ -6,10 +6,11 @@ import { numberFormat } from '../../utils/generalUtils';
 
 @Injectable()
 export class MetricsService {
+  private subscribers: ((metrics: Metric) => void)[] = [];
+
   constructor(
     @InjectModel(Metric)
     private metricModel: typeof Metric,
-
     @Inject(forwardRef(() => MaintenanceRequestsService))
     private readonly maintenanceRequestsService: MaintenanceRequestsService,
   ) {}
@@ -26,6 +27,7 @@ export class MetricsService {
         metrics.urgentRequests = metrics.urgentRequests + 1;
       }
       await metrics.save();
+      this.notifySubscribers(metrics);
     }
   }
 
@@ -37,7 +39,20 @@ export class MetricsService {
       metrics.openRequests = metrics.openRequests - 1;
       metrics.avgDaysToResolve = numberFormat(averageDays, 1);
       await metrics.save();
+      this.notifySubscribers(metrics);
     }
     return metrics;
+  }
+
+  subscribe(callback: (data: Metric) => void) {
+    this.subscribers.push(callback);
+  }
+
+  unsubscribe(callback: (data: Metric) => void) {
+    this.subscribers = this.subscribers.filter((sub) => sub !== callback);
+  }
+
+  private notifySubscribers(metrics: Metric) {
+    this.subscribers.forEach((callback) => callback(metrics));
   }
 }

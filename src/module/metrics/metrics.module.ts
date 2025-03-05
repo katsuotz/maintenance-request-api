@@ -4,6 +4,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Metric } from './entities/metric.entity';
 import { MetricsResolver } from './metrics.resolver';
 import { MaintenanceRequestsModule } from '../maintenance-requests/maintenance-requests.module';
+import { MetricsController } from './metrics.controller';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { MaintenanceRequestsModule } from '../maintenance-requests/maintenance-r
     forwardRef(() => MaintenanceRequestsModule),
   ],
   providers: [MetricsResolver, MetricsService],
+  controllers: [MetricsController],
   exports: [MetricsService],
 })
 export class MetricsModule {}
