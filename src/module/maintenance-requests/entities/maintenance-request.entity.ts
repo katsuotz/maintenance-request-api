@@ -1,5 +1,12 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  Column,
+  CreatedAt,
+  DataType,
+  Model,
+  Table,
+  UpdatedAt,
+} from 'sequelize-typescript';
 
 @ObjectType()
 @Table({ tableName: 'maintenance_requests' })
@@ -20,6 +27,10 @@ export class MaintenanceRequest extends Model {
   @Column({ allowNull: false })
   declare urgency: string;
 
+  @Field()
+  @Column({ allowNull: false })
+  declare description: string;
+
   @Field({ nullable: true })
   @Column({
     type: DataType.FLOAT,
@@ -35,4 +46,12 @@ export class MaintenanceRequest extends Model {
   declare resolvedAt?: Date;
 
   averageDays?: number;
+
+  @Field()
+  @CreatedAt
+  declare createdAt: Date;
+
+  @Field()
+  @UpdatedAt
+  declare updatedAt: Date;
 }

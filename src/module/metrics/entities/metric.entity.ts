@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Column, Model, Table } from 'sequelize-typescript';
+import { Column, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
 
 @ObjectType()
 @Table({ tableName: 'metrics' })
@@ -19,4 +19,12 @@ export class Metric extends Model {
   @Field()
   @Column({ allowNull: false })
   declare avgDaysToResolve: number;
+
+  @Field()
+  @CreatedAt
+  declare createdAt: Date;
+
+  @Field()
+  @UpdatedAt
+  declare updatedAt: Date;
 }

@@ -7,8 +7,11 @@ type MaintenanceRequest {
   title: String!
   status: String!
   urgency: String!
+  description: String!
   totalResolvedDays: Float
   resolvedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """
@@ -21,6 +24,8 @@ type Metric {
   openRequests: Float!
   urgentRequests: Float!
   avgDaysToResolve: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Query {
@@ -37,11 +42,13 @@ type Mutation {
 input CreateMaintenanceRequestInput {
   title: String!
   urgency: String!
+  description: String!
 }
 
 input UpdateMaintenanceRequestInput {
   title: String
   urgency: String
+  description: String
   status: String!
   resolvedAt: DateTime
 }

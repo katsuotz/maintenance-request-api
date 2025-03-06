@@ -54,10 +54,10 @@ export class MaintenanceRequestsService {
     if (payload.title) request.title = payload.title;
     if (payload.status) request.status = payload.status;
     if (payload.urgency) request.urgency = payload.urgency;
+    if (payload.description) request.description = payload.description;
 
     if (payload.status === 'resolved') {
       request.resolvedAt = new Date();
-      console.log(typeof request.createdAt, typeof request.resolvedAt);
       request.totalResolvedDays = numberFormat(
         getDayDiff(request.createdAt, request.resolvedAt),
         1,
