@@ -25,8 +25,7 @@ export class MaintenanceRequestsService {
       ...payload,
     });
 
-    // run update metrics in the background
-    this.metricsService.newRequest(payload);
+    await this.metricsService.newRequest(payload);
 
     return request;
   }
@@ -63,8 +62,7 @@ export class MaintenanceRequestsService {
         1,
       );
 
-      // run update metrics in the background
-      this.metricsService.finishRequest();
+      await this.metricsService.finishRequest();
     }
 
     await request.save();
