@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 import {
   Column,
   CreatedAt,
@@ -11,7 +11,7 @@ import {
 @ObjectType()
 @Table({ tableName: 'maintenance_requests' })
 export class MaintenanceRequest extends Model {
-  @Field(() => ID)
+  @Field(() => Int)
   @Column({ primaryKey: true, autoIncrement: true })
   declare id: number;
 
