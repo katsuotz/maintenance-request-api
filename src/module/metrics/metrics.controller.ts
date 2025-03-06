@@ -7,7 +7,7 @@ import { Metric } from './entities/metric.entity';
 export class MetricsController {
   constructor(private readonly metricsService: MetricsService) {}
 
-  @Get('events')
+  @Get('/')
   async sendMetricsEvents(@Res() res: Response) {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
