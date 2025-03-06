@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Metric } from './entities/metric.entity';
 import { MaintenanceRequestsService } from '../maintenance-requests/maintenance-requests.service';
 import { numberFormat } from '../../utils/generalUtils';
+import { URGENT } from '../../utils/const';
+import { CreateMaintenanceRequestInput } from '../maintenance-requests/dto/create-maintenance-request.input';
 
 @Injectable()
 export class MetricsService {
@@ -19,10 +21,13 @@ export class MetricsService {
     return this.metricModel.findOne();
   }
 
-  async newRequest(isUrgent: boolean = false) {
+  async newRequest(payload: CreateMaintenanceRequestInput) {
+    const isUrgent = URGENT.includes(payload.urgency);
     const metrics = await this.metricModel.findOne();
     if (metrics) {
-      metrics.openRequests = metrics.openRequests + 1;
+      if (payload.status === 'open') {
+        metrics.openRequests = metrics.openRequests + 1;
+      }
       if (isUrgent) {
         metrics.urgentRequests = metrics.urgentRequests + 1;
       }

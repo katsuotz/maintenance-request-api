@@ -42,13 +42,14 @@ type Mutation {
 input CreateMaintenanceRequestInput {
   title: String!
   urgency: String!
+  status: String!
   description: String!
 }
 
 input UpdateMaintenanceRequestInput {
   title: String
   urgency: String
+  status: String
   description: String
-  status: String!
   resolvedAt: DateTime
 }

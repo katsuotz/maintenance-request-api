@@ -3,15 +3,14 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateMaintenanceRequestInput } from './dto/create-maintenance-request.input';
-import { UpdateMaintenanceRequestInput } from './dto/update-maintenance-request.input';
 import { InjectModel } from '@nestjs/sequelize';
 import { MaintenanceRequest } from './entities/maintenance-request.entity';
 import { MetricsService } from '../metrics/metrics.service';
 import { Sequelize } from 'sequelize-typescript';
-import { URGENT } from '../../utils/const';
 import { getDayDiff } from '../../utils/dateUtils';
 import { numberFormat } from '../../utils/generalUtils';
+import { CreateMaintenanceRequestInput } from './dto/create-maintenance-request.input';
+import { UpdateMaintenanceRequestInput } from './dto/update-maintenance-request.input';
 
 @Injectable()
 export class MaintenanceRequestsService {
@@ -24,11 +23,10 @@ export class MaintenanceRequestsService {
   async create(payload: CreateMaintenanceRequestInput) {
     const request = await this.requestModel.create({
       ...payload,
-      status: 'open',
     });
 
     // run update metrics in the background
-    this.metricsService.newRequest(URGENT.includes(payload.urgency));
+    this.metricsService.newRequest(payload);
 
     return request;
   }

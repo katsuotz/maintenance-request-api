@@ -1,5 +1,11 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Column, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import {
+  Column,
+  CreatedAt,
+  Model,
+  Table,
+  UpdatedAt,
+} from 'sequelize-typescript';
 
 @ObjectType()
 @Table({ tableName: 'metrics' })

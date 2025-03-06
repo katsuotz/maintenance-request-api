@@ -9,5 +9,8 @@ export class CreateMaintenanceRequestInput {
   urgency: string;
 
   @Field()
+  status: string;
+
+  @Field()
   description: string;
 }

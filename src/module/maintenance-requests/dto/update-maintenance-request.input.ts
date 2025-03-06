@@ -5,9 +5,6 @@ import { InputType, Field, PartialType } from '@nestjs/graphql';
 export class UpdateMaintenanceRequestInput extends PartialType(
   CreateMaintenanceRequestInput,
 ) {
-  @Field()
-  status: string;
-
   @Field({ nullable: true }) // Optional resolvedAt field
   resolvedAt?: Date;
 }
