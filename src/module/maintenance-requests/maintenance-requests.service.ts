@@ -32,7 +32,9 @@ export class MaintenanceRequestsService {
   }
 
   findAll() {
-    return this.requestModel.findAll();
+    return this.requestModel.findAll({
+      order: [['createdAt', 'DESC']],
+    });
   }
 
   findOne(id: number) {
