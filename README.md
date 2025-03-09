@@ -31,8 +31,8 @@ pnpm install
 ### **3️⃣ Run Database Migrations and Seeders**
 Before starting the project, **run the database migrations** and **seed the data**:
 ```sh
-pnpm sequelize-cli db:migrate
-pnpm sequelize-cli db:seed:all
+npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
 ```
 
 This will set up the database schema and populate the initial data.
@@ -60,6 +60,4 @@ pnpm start:dev
 - Modify `.env` if using a different database setup.
 
 ---
-
-### 🎯 **Happy Coding!** 🚀
 
